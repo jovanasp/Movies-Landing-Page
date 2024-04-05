@@ -254,6 +254,7 @@ $(document).ready(function() {
         },
         
     ];
+    
     displayMovies('popular');
     
     function displayMovies(genre) {
@@ -290,7 +291,12 @@ $(document).ready(function() {
     $('form[role="search"]').submit(function(e) {
         e.preventDefault();
         var selectedGenre = $(this).find('input[type="search"]').val().toLowerCase();
-        displayMovies(selectedGenre);
+        var validGenres = ['horror', 'action', 'animation', 'romance', 'comedy'];
+        if(validGenres.includes(selectedGenre)){
+            displayMovies(selectedGenre);
+        }else{
+            $('#errorModal').show()
+        }
     });
     //Displays popular movies when clicking the brand name
     $('.navbar-brand').click(function(e) {
@@ -312,6 +318,8 @@ $(document).ready(function() {
     //Hides the modal
     $('.btn-close').click(function() {
         $('#movieModal').hide();
+        $('#errorModal').hide();
+
     });
     //Listens for clicks on elements with the class 'nav-link'
     $('.nav-link').click(function(e) {

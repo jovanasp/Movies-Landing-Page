@@ -12,8 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Movies</title>
-     <link rel="stylesheet" href="style.css">
-     
+     <link rel="stylesheet" href="style.css">    
 </head>
 <body>
   <header>
@@ -69,6 +68,14 @@
     <p><strong>Description:</strong> <span id="modalDesc"></span></p>
   </div>
 </div>
-
+<div id="errorModal" class="modal" tabindex="-1">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Genre Not Found</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <p><strong>We're sorry, but the genre you've entered is not available on our website at the moment. Our collection is continually expanding, so please check back later for updates.</strong></p> 
+  </div>
+</div>
 </body>
 </html>
