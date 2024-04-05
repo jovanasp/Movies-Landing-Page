@@ -260,9 +260,9 @@ $(document).ready(function() {
         //Clears the contents of the element with the id 'moviePostersRow'
         $('#moviePostersRow').empty();
         if(genre != 'popular'){
-            $('#slogan').hide();
+            $('#hero-section').hide();
         }else{
-            $('#slogan').show();
+            $('#hero-section').show();
         }
         //Creates a copy of the 'movies' array to perform filtering
         var filteredMovies = movies;
