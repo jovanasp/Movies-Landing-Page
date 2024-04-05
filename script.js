@@ -1,4 +1,3 @@
-//title,year,description, genre
 $(document).ready(function() {
     var movies = [
         {
@@ -218,10 +217,112 @@ $(document).ready(function() {
             year: 2023,
             desc:"In the wake of his mother's death and his father's remarriage, a headstrong boy named Mahito ventures into a dreamlike world shared by both the living and the dead."
         },
+        {
+            value: "dune",
+            label: "Dune",
+            genre: "popular",
+            year: 2021,
+            desc:"Paul Atreides arrives on Arrakis after his father accepts the stewardship of the dangerous planet. However, chaos ensues after a betrayal as forces clash to control melange, a precious resource."
+        },
+        {
+            value: "barbie",
+            label: "Barbie",
+            genre: "popular",
+            year: 2023,
+            desc:"Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans."
+        },
+        {
+            value: "oppenheimer",
+            label: "Oppenheimer",
+            genre: "popular",
+            year: 2023,
+            desc:"The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb."
+        },
+        {
+            value: "poor-things",
+            label: "Poor Things",
+            genre: "popular",
+            year: 2023,
+            desc:"Brought back to life by an unorthodox scientist, a young woman runs off with a lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation."
+        },
+        {
+            value: "anatomy",
+            label: "Anatomy of a Fall",
+            genre: "popular",
+            year: 2023,
+            desc:"A woman is suspected of her husband's murder, and their blind son faces a moral dilemma as the sole witness."
+        },
+        
     ];
+    displayMovies('popular');
+    
+    function displayMovies(genre) {
+        //Clears the contents of the element with the id 'moviePostersRow'
+        $('#moviePostersRow').empty();
+        if(genre != 'popular'){
+            $('#slogan').hide();
+        }else{
+            $('#slogan').show();
+        }
+        //Creates a copy of the 'movies' array to perform filtering
+        var filteredMovies = movies;
+        //Filters the 'filteredMovies' array to include only movies with the specified genre
+        filteredMovies = movies.filter(function(movie) {
+           return movie.genre === genre;
+        });
+        //Iterates over each movie in the filteredMovies array
+        filteredMovies.forEach(function(movie) {
+            //Creates an <img> element
+            var poster = $('<img>').attr('src', 'posters/' + movie.value + '.webp').addClass('movie-poster col-lg-3 col-md-6 col-sm-12');
+            poster.data('movie', movie);
+            //Appends the poster element to the element with the id 'moviePostersRow'
+            $('#moviePostersRow').append(poster);
+        });
+    }
+    //Listens for clicks on elements with the class 'nav-link'
+    $('.nav-link').click(function(e) {
+        e.preventDefault();
+        $('.recommended').hide();
+        var selectedGenre = $(this).text().toLowerCase();
+        displayMovies(selectedGenre);
+    });
+    //Listens for the submission of a form
+    $('form[role="search"]').submit(function(e) {
+        e.preventDefault();
+        var selectedGenre = $(this).find('input[type="search"]').val().toLowerCase();
+        displayMovies(selectedGenre);
+    });
+    //Displays popular movies when clicking the brand name
+    $('.navbar-brand').click(function(e) {
+        e.preventDefault();
+        $('.recommended').show();
+        $('.nav-link').removeClass('active-link');
+        displayMovies('popular');
+    });
+    //Listens for clicks on elements with the class 'movie-poster'
+    $('#moviePosters').on('click', '.movie-poster', function() {
+        var movie = $(this).data('movie');
+        $('#modalTitle').text(movie.label);
+        $('#modalGenre').text(movie.genre);
+        $('#modalYear').text(movie.year);
+        $('#modalDesc').text(movie.desc);
 
+        $('#movieModal').show();//Displays the movie modal
+    });
+    //Hides the modal
+    $('.btn-close').click(function() {
+        $('#movieModal').hide();
+    });
+    //Listens for clicks on elements with the class 'nav-link'
+    $('.nav-link').click(function(e) {
+        e.preventDefault();
+        $('.nav-link').removeClass('active-link'); //Removes the class from all links
+        $(this).addClass('active-link'); //Adds the class to the clicked link
+        var selectedGenre = $(this).text().toLowerCase(); //Extracts the text content of the clicked link and stores it in selectedGenre
+        displayMovies(selectedGenre);
+    });
+    
 });
     
 
 
-console.log("cover");
