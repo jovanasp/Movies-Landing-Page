@@ -28,7 +28,6 @@ p{
   transition: opacity 0.3s ease-out;
 }
 .movie-poster:hover{
-  opacity: 0.5;
   cursor: pointer;
   opacity: 0.7;
 }
@@ -43,7 +42,6 @@ p{
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
@@ -74,9 +72,15 @@ p{
 .form-control,#searchButton{
   border-radius: 20px;
 }
-#slogan p{
+#hero-section p{
   text-align: center;
   font-size: large;
   padding: 5px;
   margin-bottom: 20px;
+}
+
+@media (max-width: 700px){
+  .modal-content{
+    width: 80%;
+  }
 }
